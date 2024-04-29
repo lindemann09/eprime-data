@@ -18,8 +18,8 @@ def cli():
             __version__),
         epilog=f"(c) {__author__}")
 
-    parser.add_argument("PATH", nargs='+', default=None,
-                        help="the path to e-prime data file")
+    parser.add_argument("FILES", nargs='+', default=None,
+                        help="E-prime data file(s) or glob pattern. Single or multiple file names or a string representing a glob pattern that matches multiple files to be processed")
 
     parser.add_argument("--csv", dest="csv",
                         action="store_true",
@@ -45,13 +45,13 @@ def cli():
 
     args = vars(parser.parse_args())
 
-    if args["PATH"] is None:
+    if args["FILES"] is None:
         print("Please specify a source file or glob pattern (with *) of sources files")
         print("Use -h for help")
         sys.exit()
 
     data_files: List[Path] = []
-    for flname in args["PATH"]:
+    for flname in args["FILES"]:
         if flname.find("*") >= 0:
             # glob file pattern
             data_files.extend(Path().glob(flname))
