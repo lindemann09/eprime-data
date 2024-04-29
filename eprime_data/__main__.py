@@ -8,7 +8,7 @@ import sys
 from pathlib import Path
 from typing import List
 
-from . import __version__
+from . import __version__, __author__
 from .lib import EPrimeData
 
 
@@ -16,7 +16,7 @@ def cli():
     parser = argparse.ArgumentParser(
         description="E-Prima-data {}: Converting E-Prime txt data".format(
             __version__),
-        epilog="(c) O. Lindemann")
+        epilog=f"(c) {__author__}")
 
     parser.add_argument("PATH", nargs='+', default=None,
                         help="the path to e-prime data file")

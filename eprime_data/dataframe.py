@@ -7,7 +7,6 @@ try:
 except ModuleNotFoundError as err:
     raise RuntimeError("To using dataframe function please install Pandas!") from err
 
-
 def dataframe(eprime_data:EPrimeData,
               level: int, add_subject_id=False):
     """returns Pandas dataframe"""
