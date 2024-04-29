@@ -9,13 +9,10 @@ license = {file = "LICENSE"}
 classifiers = ["License :: OSI Approved :: MIT License"]
 dynamic = ["version", "description"]
 requires-python = ">=3.8"
-dependencies =  []
-
-[project.optional-dependencies]
-pandas = ["pandas>=2.1"]
+dependencies =  ["pandas>=2.1", "pyarrow>=16.0"]
 
 [project.scripts]
-pyexam = "eprime_data.__main__:run"
+eprime_data = "eprime_data.__main__:cli"
 
 [project.urls]
 Home = "https://github.com/lindemann09/eprime-data"
