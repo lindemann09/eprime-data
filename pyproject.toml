@@ -6,8 +6,13 @@ build-backend = "flit_core.buildapi"
 name = "eprime_data"
 authors = [{name = "Oliver Lindemann", email = "lindemann@essb.eur.nl"}]
 license = {file = "LICENSE"}
-classifiers = ["License :: OSI Approved :: MIT License"]
+keywords = ["open science", "experimental psychology", "data analysis"]
+classifiers = [
+  "Programming Language :: Python :: 3",
+  "Operating System :: OS Independent"
+]
 dynamic = ["version", "description"]
+readme = "README.md"
 requires-python = ">=3.8"
 dependencies =  ["pandas>=2.1", "pyarrow>=16.0"]
 
