@@ -9,4 +9,5 @@ class RE():
     level = re.compile(r"Level:\s(\d+)")
     subject = re.compile(r"Subject:\s(\d+)")
     experiment = re.compile(r"Experiment:\s(\w+)")
+    datetime = re.compile(r"SessionStartDateTimeUtc:\s(.+)")
 

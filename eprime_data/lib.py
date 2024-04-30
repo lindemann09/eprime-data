@@ -1,7 +1,8 @@
 import csv
 from collections import OrderedDict
+from datetime import datetime
 from pathlib import Path
-from typing import Dict, Iterator
+from typing import Dict, Optional
 
 from .constants import EPRIME_FILE_ENCODING, RE
 from .dict_tab_data import DictTabularData
@@ -17,6 +18,7 @@ class EPrimeData(object):
         self.levels: Dict[int, DictTabularData] = {}
         self.experiment = ""
         self.subject_id = -1
+        self.datetime_str = ""
         self._no_dots = replace_dots_in_variable_names
         self._read_file()
 
@@ -29,6 +31,12 @@ class EPrimeData(object):
             rtn["subject_id"] = [self.subject_id] * self.levels[level].nrow
         rtn.update(self.levels[level].dict)
         return rtn
+
+    def datetime(self) -> Optional[datetime]:
+        try:
+            return datetime.strptime(self.datetime_str, "%d-%m-%Y %H:%M:%S")
+        except AttributeError:
+            return None
 
     def _read_file(self):
         self.levels = {}
@@ -51,7 +59,9 @@ class EPrimeData(object):
                         subject = RE.subject.match(l)
                         if subject:
                             self.subject_id = int(subject.group(1))
-
+                        dt = RE.datetime.match(l)
+                        if dt:
+                            self.datetime_str = dt.group(1)
                     if RE.frame_end.search(l):
                         self.levels[lvl].append(row)
                         lvl = 0
@@ -94,16 +104,13 @@ class EPrimeData(object):
             for row in self.levels[level].row_dicts(add_constants=consts):
                 writer.writerow(row)
 
-    def info(self) ->str:
-        rtn = f"## {self.filename} ##"
-        for lvl in sorted(self.levels.keys()):
-            rtn += f"\nLevel {lvl}: "
-            for cnt, name in enumerate(self.levels[lvl].names):
-                rtn += f"{name}, "
-                if cnt % 5 == 4:
-                    rtn += "\n" + " "*9
-
+    def info(self, levels:bool=True) -> str:
+        rtn = f"## {self.filename} {self.datetime_str}"
+        if levels:
+            for lvl in sorted(self.levels.keys()):
+                rtn += f"\nLevel {lvl}: "
+                for cnt, name in enumerate(self.levels[lvl].names):
+                    rtn += f"{name}, "
+                    if cnt % 4 == 3:
+                        rtn += "\n" + " "*9
         return rtn.strip()
-
-
-

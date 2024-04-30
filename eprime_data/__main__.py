@@ -1,4 +1,3 @@
-
 """
 Command line interface for EPrima-data
 """
@@ -32,7 +31,7 @@ def cli():
                         default=False)
 
     parser.add_argument('-l', '--level', type=int, default=-1,
-                        help="data level to be extracted")
+                        help="data level to extract")
 
     parser.add_argument('--override',  dest="override",
                         action="store_true",
