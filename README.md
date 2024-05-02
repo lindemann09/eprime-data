@@ -15,7 +15,7 @@ pip install eprime_data
 ```
 usage: __main__.py [-h] [--csv] [--feather] [-l LEVEL] [--override] FILES [FILES ...]
 
-E-Prima-data: Converting E-Prime txt data
+E-Prima-data: Converting E-Prime log-data (.txt)
 
 positional arguments:
   FILES                 E-prime data file(s) or glob pattern. Single or multiple file names or a

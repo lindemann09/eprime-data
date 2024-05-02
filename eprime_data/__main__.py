@@ -8,12 +8,12 @@ from pathlib import Path
 from typing import List
 
 from . import __version__, __author__
-from .lib import EPrimeData
+from .lib import EPrimeLogFile
 
 
 def cli():
     parser = argparse.ArgumentParser(
-        description="E-Prima-data {}: Converting E-Prime txt data".format(
+        description="E-Prima-data {}: Converting E-Prime log-data (.txt)".format(
             __version__),
         epilog=f"(c) {__author__}")
 
@@ -71,9 +71,9 @@ def _process_file(dat_file: Path, csv: bool, feather: bool, level: int,
         print(f"Can't open {dat_file}")
         exit()
 
-    dat = EPrimeData(dat_file)
+    dat = EPrimeLogFile(dat_file)
     if not (csv or feather):
-        print(EPrimeData(dat_file).info())
+        print(EPrimeLogFile(dat_file).info())
         return
     # convert
     exist_levels = sorted(dat.levels.keys())

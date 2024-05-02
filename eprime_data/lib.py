@@ -7,8 +7,9 @@ from typing import Dict, Optional
 from .constants import EPRIME_FILE_ENCODING, RE
 from .dict_tab_data import DictTabularData
 
+## TODO ignores currently header data
 
-class EPrimeData(object):
+class EPrimeLogFile(object):
     """Handles e-prime txt data files"""
 
     def __init__(self, filename: str | Path,
@@ -19,7 +20,7 @@ class EPrimeData(object):
         self.experiment = ""
         self.subject_id = -1
         self.datetime_str = ""
-        self._no_dots = replace_dots_in_variable_names
+        self._varnames_without_dots = replace_dots_in_variable_names
         self._read_file()
 
     def data(self, level: int, add_subject_id=True) -> OrderedDict:
@@ -82,7 +83,7 @@ class EPrimeData(object):
                                 except ValueError:
                                     v = value
 
-                            if self._no_dots:
+                            if self._varnames_without_dots:
                                 key = key.replace(".", "_")
                             row[key] = v
         return None
