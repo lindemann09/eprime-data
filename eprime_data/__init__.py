@@ -1,6 +1,6 @@
 """Library & command line interface to handle and convert E-Prime log-data (.txt)"""
 
-__version__ = "0.2.5"
+__version__ = "0.2.6-dev"
 __author__ = "Oliver Lindemann"
 
 import sys as _sys
