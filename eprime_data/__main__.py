@@ -13,7 +13,7 @@ from .lib import EPrimeLogFile
 
 def cli():
     parser = argparse.ArgumentParser(
-        description="E-Prima-data {}: Converting E-Prime log-data (.txt)".format(
+        description="E-Prime data {}: Converting E-Prime log-data (.txt)".format(
             __version__),
         epilog=f"(c) {__author__}")
 
