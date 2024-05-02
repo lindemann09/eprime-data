@@ -1,6 +1,6 @@
 """Library & command line interface to handle and convert txt-data files from E-prime"""
 
-__version__ = "0.2.4"
+__version__ = "0.2.5-dev"
 __author__ = "Oliver Lindemann"
 
 import sys as _sys
